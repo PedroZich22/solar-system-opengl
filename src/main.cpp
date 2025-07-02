@@ -13,35 +13,10 @@
 #include "planet_speeds.h"
 
 #include "texture_loader.cpp"
-#include "input_handler.h"
+#include "input_handler.cpp"
 
 GLuint sunTexture, mercuryTexture, venusTexture, earthTexture, marsTexture, jupiterTexture, saturnTexture, saturnRingTexture, uranusTexture, neptuneTexture;
 float rotationAngle = 0.0;
-
-void printCommandMenu()
-{
-  std::cout << "\n--------------------------------------\n";
-  std::cout << "   Solar System Simulation Commands \n";
-  std::cout << "--------------------------------------\n";
-  std::cout << " Quit: press 'ESC'\n";
-  std::cout << " Toggle orbits: press 'o'\n";
-  std::cout << " Zoom in: press 'w'\n";
-  std::cout << " Zoom out: press 's'\n";
-  std::cout << " Pause animation: press 'p'\n";
-  std::cout << " Move camera: press and hold the left mouse button and drag\n";
-  std::cout << " View all elements: press 'A'\n";
-  std::cout << " View individual element:\n";
-  std::cout << "  0 - SUN\n";
-  std::cout << "  1 - MERCURY\n";
-  std::cout << "  2 - VENUS\n";
-  std::cout << "  3 - EARTH\n";
-  std::cout << "  4 - MARS\n";
-  std::cout << "  5 - JUPITER\n";
-  std::cout << "  6 - SATURN\n";
-  std::cout << "  7 - URANUS\n";
-  std::cout << "  8 - NEPTUNE\n";
-  std::cout << "\n--------------------------------------\n";
-};
 
 void init()
 {
@@ -59,8 +34,6 @@ void init()
   uranusTexture = loadTexture(URANUS_TEXTURE);
   neptuneTexture = loadTexture(NEPTUNE_TEXTURE);
   saturnRingTexture = loadTexture(SATURN_RING_TEXTURE);
-
-  printCommandMenu();
 };
 
 void drawTexturedSphere(GLuint texture, float radius)
