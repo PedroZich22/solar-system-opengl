@@ -36,6 +36,14 @@ void init()
   saturnRingTexture = loadTexture(SATURN_RING_TEXTURE);
 };
 
+void renderText(const char *text, float x, float y, float z) 
+{
+  glRasterPos3f(x, y, z);
+  for (const char *c = text; *c != '\0'; c++) {
+    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *c);
+  }
+};
+
 void drawTexturedSphere(GLuint texture, float radius)
 {
   glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
@@ -138,42 +146,45 @@ void display()
             0.0, 0.0, 0.0,
             0.0, 1.0, 0.0);
 
+  if (selectedElement != 0) drawSun(false);
+
   switch (selectedElement)
   {
   case 0:
     drawSun(true);
+    renderText("SOL", 0.0, SUN_RADIUS + 1.0, 0.0);
     break;
   case 1:
-    drawSun(false);
     drawPlanet(mercuryTexture, 0.0, MERCURY_SPEED, MERCURY_RADIUS, "MERCURY");
+    renderText("MERCURIO", 0.0, MERCURY_RADIUS + 0.5, 0.0);
     break;
   case 2:
-    drawSun(false);
     drawPlanet(venusTexture, 0.0, VENUS_SPEED, VENUS_RADIUS, "VENUS");
+    renderText("VENUS", 0.0, VENUS_RADIUS + 0.5, 0.0);
     break;
   case 3:
-    drawSun(false);
     drawPlanet(earthTexture, 0.0, EARTH_SPEED, EARTH_RADIUS, "EARTH");
+    renderText("TERRA", 0.0, EARTH_RADIUS + 0.5, 0.0);
     break;
   case 4:
-    drawSun(false);
     drawPlanet(marsTexture, 0.0, MARS_SPEED, MARS_RADIUS, "MARS");
+    renderText("MARTE", 0.0, MARS_RADIUS + 0.5, 0.0);
     break;
   case 5:
-    drawSun(false);
     drawPlanet(jupiterTexture, 0.0, JUPITER_SPEED, JUPITER_RADIUS, "JUPITER");
+    renderText("JUPITER", 0.0, JUPITER_RADIUS + 0.5, 0.0);
     break;
   case 6:
-    drawSun(false);
     drawPlanet(saturnTexture, 0.0, SATURN_SPEED, SATURN_RADIUS, "SATURN", true, SATURN_RADIUS * 1.2f, SATURN_RADIUS * 2.0f);
+    renderText("SATURNO", 0.0, SATURN_RADIUS + 0.5, 0.0);
     break;
   case 7:
-    drawSun(false);
     drawPlanet(uranusTexture, 0.0, URANUS_SPEED, URANUS_RADIUS, "URANUS");
+    renderText("URANO", 0.0, URANUS_RADIUS + 0.5, 0.0);
     break;
   case 8:
-    drawSun(false);
     drawPlanet(neptuneTexture, 0.0, NEPTUNE_SPEED, NEPTUNE_RADIUS, "NEPTUNE");
+    renderText("NETUNO", 0.0, NEPTUNE_RADIUS + 0.5, 0.0);
     break;
   default:
     drawSun(true);
