@@ -1,5 +1,5 @@
 
-#include "input_handler.h"
+#include "../include/input_handler.h"
 
 float cameraAngleX = 0.0;
 float cameraAngleY = 0.0;
