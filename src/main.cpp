@@ -23,6 +23,13 @@ void init()
   glClearColor(0.0, 0.0, 0.0, 0.0);
   glEnable(GL_DEPTH_TEST);
 
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  GLfloat light_pos[] = {0.0f, 0.0f, 0.0f, 1.0f};
+  GLfloat light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+  glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
+  glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+
   sunTexture = loadTexture(SUN_TEXTURE);
   mercuryTexture = loadTexture(MERCURY_TEXTURE);
   venusTexture = loadTexture(VENUS_TEXTURE);
@@ -38,10 +45,17 @@ void init()
 
 void renderText(const char *text, float x, float y, float z) 
 {
+  glPushAttrib(GL_LIGHTING_BIT);
+  glDisable(GL_LIGHTING);
+
+  glColor3f(1.0f, 1.0f, 1.0f);
+
   glRasterPos3f(x, y, z);
   for (const char *c = text; *c != '\0'; c++) {
     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *c);
   }
+
+  glPopAttrib();
 };
 
 void drawTexturedSphere(GLuint texture, float radius)
@@ -67,18 +81,48 @@ void drawOrbit(float radius)
 
 void drawSun(bool withLighting)
 {
-  if (!withLighting)
-  {
-    glDisable(GL_LIGHTING);
-    glDisable(GL_LIGHT0);
-    return;
-  }
-
   glPushMatrix();
+
+  GLfloat emission[] = {1.5f, 1.2f, 0.5f, 1.0f};
+  glMaterialfv(GL_FRONT, GL_EMISSION, emission);
+
   glRotatef(rotationAngle, 0.0, 1.0, 0.0);
   drawTexturedSphere(sunTexture, SUN_RADIUS);
+
+  if (withLighting)
+  {
+    glPushAttrib(GL_ENABLE_BIT);
+
+    glDisable(GL_LIGHTING);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDepthMask(GL_FALSE);
+
+    GLUquadric *halo = gluNewQuadric();
+    gluQuadricTexture(halo, GL_FALSE);
+
+    float scales[10] = {1.2f, 1.4f, 1.6f, 1.85f, 2.1f, 2.4f, 2.8f, 3.3f, 3.8f, 4.5f};
+    float alphas[10] = {0.35f, 0.30f, 0.25f, 0.20f, 0.16f, 0.12f, 0.08f, 0.05f, 0.03f, 0.015f};
+
+    for (int i = 0; i < 10; i++)
+    {
+      glColor4f(1.0f, 0.80f - i * 0.04f, 0.4f - i * 0.035f, alphas[i]);
+      gluSphere(halo, SUN_RADIUS * scales[i], 48, 24);
+    }
+
+    gluDeleteQuadric(halo);
+
+    glDepthMask(GL_TRUE);
+
+    glPopAttrib();
+  }
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+  GLfloat noEmission[] = {0.0f, 0.0f, 0.0f, 1.0f};
+  glMaterialfv(GL_FRONT, GL_EMISSION, noEmission);
   glPopMatrix();
 };
+
+
 
 void drawSaturnRing(float innerRadius, float outerRadius)
 {
@@ -172,12 +216,12 @@ void display()
             0.0, 0.0, 0.0,
             0.0, 1.0, 0.0);
 
-  if (selectedElement != 0) drawSun(false);
+  if (selectedElement == 0 || selectedElement == -1)  drawSun(false);
 
   switch (selectedElement)
   {
   case 0:
-    drawSun(true);
+    drawSun(false);
     renderText("SOL", 0.0, SUN_RADIUS + 1.0, 0.0);
     break;
   case 1:
