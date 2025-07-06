@@ -6,14 +6,13 @@
 
 #include <GL/freeglut.h>
 
-#include "stb_image.h"
-#include "textures.h"
-#include "planet_radii.h"
-#include "orbit_radii.h"
-#include "planet_speeds.h"
-
-#include "texture_loader.cpp"
-#include "input_handler.cpp"
+#include "../include/stb_image.h"
+#include "../include/textures.h"
+#include "../include/planet_radii.h"
+#include "../include/orbit_radii.h"
+#include "../include/planet_speeds.h"
+#include "../include/texture_loader.h"
+#include "../include/input_handler.h"
 
 GLuint sunTexture, mercuryTexture, venusTexture, earthTexture, marsTexture, jupiterTexture, saturnTexture, saturnRingTexture, uranusTexture, neptuneTexture;
 float rotationAngle = 0.0;
