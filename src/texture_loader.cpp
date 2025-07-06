@@ -1,4 +1,5 @@
-
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 #include "texture_loader.h"
 
 GLuint loadTexture(const char *filename)

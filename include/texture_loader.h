@@ -16,9 +16,6 @@
  * This macro should be defined exactly once in the project to include
  * the implementation of the STB image functions.
  */
-#define STB_IMAGE_IMPLEMENTATION
-
-#include "stb_image.h"
 
 #include <GL/freeglut.h>
 

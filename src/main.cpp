@@ -12,8 +12,8 @@
 #include "orbit_radii.h"
 #include "planet_speeds.h"
 
-#include "texture_loader.cpp"
-#include "input_handler.cpp"
+#include "texture_loader.h"
+#include "input_handler.h"
 
 GLuint sunTexture, mercuryTexture, venusTexture, earthTexture, marsTexture, jupiterTexture, saturnTexture, saturnRingTexture, uranusTexture, neptuneTexture;
 float rotationAngle = 0.0;
