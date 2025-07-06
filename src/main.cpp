@@ -43,18 +43,26 @@ void init()
   saturnRingTexture = loadTexture(SATURN_RING_TEXTURE);
 };
 
-void renderText(const char *text, float x, float y, float z) 
+void renderText(const char *text, float x, float y, float z, float s = 0.3) 
 {
   glPushAttrib(GL_LIGHTING_BIT);
   glDisable(GL_LIGHTING);
 
   glColor3f(1.0f, 1.0f, 1.0f);
-
-  glRasterPos3f(x, y, z);
-  for (const char *c = text; *c != '\0'; c++) {
-    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *c);
+  float currY = y;
+  for (const char *start = text; *start;) {
+    const char *end = start;
+    while (*end != '\n' && *end != '\0') {
+      end++;
+    }
+    glRasterPos3f(x, currY, z);
+    for (const char *c = start; c < end; ++c) {
+      glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *c);
+    }
+    if (*end == '\0') break;
+    start = end + 1;
+    currY -= s;
   }
-
   glPopAttrib();
 };
 
@@ -121,8 +129,6 @@ void drawSun(bool withLighting)
   glMaterialfv(GL_FRONT, GL_EMISSION, noEmission);
   glPopMatrix();
 };
-
-
 
 void drawSaturnRing(float innerRadius, float outerRadius)
 {
@@ -204,7 +210,6 @@ void drawPlanet(GLuint texture, float orbitRadius, float orbitSpeed, float plane
   glPopMatrix();
 };
 
-
 void display()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -222,40 +227,85 @@ void display()
   {
   case 0:
     drawSun(false);
-    renderText("SOL", 0.0, SUN_RADIUS + 1.0, 0.0);
+    renderText(
+      "SOL\n"
+      "Massa: 1,989 x 10^30 kg\n"
+      "Temperatura do nucleo: 5 milhoes de C (fusao nuclear)",
+      0.0, SUN_RADIUS + 1.0, 0.0
+    );
     break;
   case 1:
     drawPlanet(mercuryTexture, 0.0, MERCURY_SPEED, MERCURY_RADIUS, "MERCURY");
-    renderText("MERCURIO", 0.0, MERCURY_RADIUS + 0.5, 0.0);
+    renderText(
+      "MERCURIO\n"
+      "Massa: 3,285 x 10^23 kg\n"
+      "Gravidade: 3,7 m/s^2",
+      0.0, MERCURY_RADIUS + 1.0, 0.0
+    );
     break;
   case 2:
     drawPlanet(venusTexture, 0.0, VENUS_SPEED, VENUS_RADIUS, "VENUS");
-    renderText("VENUS", 0.0, VENUS_RADIUS + 0.5, 0.0);
+    renderText(
+      "VENUS\n"
+      "Massa: 4,867 x 10^24 kg\n"
+      "Gravidade: 8,87 m/s^2",
+      0.0, VENUS_RADIUS + 1.0, 0.0
+    );
     break;
   case 3:
     drawPlanet(earthTexture, 0.0, EARTH_SPEED, EARTH_RADIUS, "EARTH");
     drawMoon(0.0f, 0.0f, MOON_ORBIT_RADIUS, MOON_SPEED, MOON_RADIUS);
-    renderText("TERRA", 0.0, EARTH_RADIUS + 0.5, 0.0);
+    renderText(
+      "TERRA\n"
+      "Massa: 5,972 x 10^24 kg\n"
+      "Gravidade: 9,81 m/s^2",
+      0.0, EARTH_RADIUS + 1.0, 0.0
+    );
     break;
   case 4:
     drawPlanet(marsTexture, 0.0, MARS_SPEED, MARS_RADIUS, "MARS");
-    renderText("MARTE", 0.0, MARS_RADIUS + 0.5, 0.0);
+    renderText(
+      "MARTE\n"
+      "Massa: 6,417 x 10^23 kg\n"
+      "Gravidade: 3,71 m/s^2",
+      0.0, MARS_RADIUS + 1.0, 0.0
+    );
     break;
   case 5:
     drawPlanet(jupiterTexture, 0.0, JUPITER_SPEED, JUPITER_RADIUS, "JUPITER");
-    renderText("JUPITER", 0.0, JUPITER_RADIUS + 0.5, 0.0);
+    renderText(
+      "JUPITER\n"
+      "Massa: 1,898 x 10^27 kg\n"
+      "Gravidade: 24,79 m/s^2", 
+      0.0, JUPITER_RADIUS + 1.0, 0.0
+    );
     break;
   case 6:
     drawPlanet(saturnTexture, 0.0, SATURN_SPEED, SATURN_RADIUS, "SATURN", true, SATURN_RADIUS * 1.2f, SATURN_RADIUS * 2.0f);
-    renderText("SATURNO", 0.0, SATURN_RADIUS + 0.5, 0.0);
+    renderText(
+      "SATURNO\n"
+      "Massa: 5,683 x 10^26 kg\n"
+      "Gravidade: 10,44 m/s^2", 
+      0.0, SATURN_RADIUS + 1.0, 0.0
+    );
     break;
   case 7:
     drawPlanet(uranusTexture, 0.0, URANUS_SPEED, URANUS_RADIUS, "URANUS");
-    renderText("URANO", 0.0, URANUS_RADIUS + 0.5, 0.0);
+    renderText(
+      "URANO\n"
+      "Massa: 8,681 x 10^25 kg\n"
+      "Gravidade: 8,69 m/s^2", 
+      0.0, URANUS_RADIUS + 1.0, 0.0
+    );
     break;
   case 8:
     drawPlanet(neptuneTexture, 0.0, NEPTUNE_SPEED, NEPTUNE_RADIUS, "NEPTUNE");
-    renderText("NETUNO", 0.0, NEPTUNE_RADIUS + 0.5, 0.0);
+    renderText(
+      "NETUNO\n"
+      "Massa: 1,024 x 10^26 kg\n"
+      "Gravidade: 11,15 m/s^2", 
+      0.0, NEPTUNE_RADIUS + 1.0, 0.0
+    );
     break;
   default:
     drawSun(true);

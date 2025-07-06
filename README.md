@@ -22,7 +22,7 @@ Este projeto apresenta uma visualização 3D do sistema solar usando OpenGL com 
 
 ### Compilar e Executar
 
-To build and run the simulation, follow these steps:
+Para compilar e executar o sistema solar, siga as seguintes etapas:
 
 ```bash
 cd build

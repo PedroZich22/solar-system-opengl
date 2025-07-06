@@ -18,7 +18,7 @@ link_directories("C:/Program Files/Common Files/MinGW/freeglut/lib")
 
 find_package(OpenGL REQUIRED)
 
-add_executable(main src/main.cpp)
+add_executable(main src/main.cpp src/input_handler.cpp src/texture_loader.cpp)
 
 target_link_libraries(main
   ${OPENGL_gl_LIBRARY}
