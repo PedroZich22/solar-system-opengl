@@ -117,9 +117,12 @@ void drawSaturnRing(float innerRadius, float outerRadius)
   gluDeleteQuadric(quad);
 };
 
-void drawMoon(float moonOrbitRadius, float moonOrbitSpeed, float moonRadius)
+void drawMoon(float earthAngle, float earthOrbitRadius, float moonOrbitRadius, float moonOrbitSpeed, float moonRadius)
 {
   glPushMatrix();
+  glRotatef(earthAngle, 0.0, 1.0, 0.0);
+  glTranslatef(earthOrbitRadius, 0.0, 0.0);
+  glRotatef(5.14f, 1.0, 0.0, 0.0);
   glRotatef(rotationAngle * moonOrbitSpeed, 0.0, 1.0, 0.0);
   glTranslatef(moonOrbitRadius, 0.0, 0.0);
   drawTexturedSphere(moonTexture, moonRadius);
@@ -132,24 +135,31 @@ void drawPlanet(GLuint texture, float orbitRadius, float orbitSpeed, float plane
   {
     drawOrbit(orbitRadius);
   }
-
   glPushMatrix();
   glRotatef(rotationAngle * orbitSpeed, 0.0, 1.0, 0.0);
   glTranslatef(orbitRadius, 0.0, 0.0);
-  drawTexturedSphere(texture, planetRadius);
+
+  if (strcmp(name, "EARTH") == 0)
+  {
+    glPushMatrix();
+    glRotatef(23.5f, 0.0f, 0.0f, 1.0f);
+    glRotatef(rotationAngle * 1.0f, 0.0f, 1.0f, 0.0f);
+    drawTexturedSphere(texture, planetRadius);
+    glPopMatrix();
+  }
+  else
+  {
+    drawTexturedSphere(texture, planetRadius);
+  }
 
   if (hasRing)
   {
     drawSaturnRing(innerRingRadius, outerRingRadius);
   }
 
-  if (strcmp(name, "EARTH") == 0)
-  {
-    drawMoon(MOON_ORBIT_RADIUS, MOON_SPEED, MOON_RADIUS);
-  }
-
   glPopMatrix();
 };
+
 
 void display()
 {
@@ -180,6 +190,7 @@ void display()
     break;
   case 3:
     drawPlanet(earthTexture, 0.0, EARTH_SPEED, EARTH_RADIUS, "EARTH");
+    drawMoon(0.0f, 0.0f, MOON_ORBIT_RADIUS, MOON_SPEED, MOON_RADIUS);
     renderText("TERRA", 0.0, EARTH_RADIUS + 0.5, 0.0);
     break;
   case 4:
@@ -206,7 +217,10 @@ void display()
     drawSun(true);
     drawPlanet(mercuryTexture, MERCURY_ORBIT_RADIUS, MERCURY_SPEED, MERCURY_RADIUS, "MERCURY");
     drawPlanet(venusTexture, VENUS_ORBIT_RADIUS, VENUS_SPEED, VENUS_RADIUS, "VENUS");
+    
     drawPlanet(earthTexture, EARTH_ORBIT_RADIUS, EARTH_SPEED, EARTH_RADIUS, "EARTH");
+    drawMoon(rotationAngle * EARTH_SPEED, EARTH_ORBIT_RADIUS, MOON_ORBIT_RADIUS, MOON_SPEED, MOON_RADIUS);
+    
     drawPlanet(marsTexture, MARS_ORBIT_RADIUS, MARS_SPEED, MARS_RADIUS, "MARS");
     drawPlanet(jupiterTexture, JUPITER_ORBIT_RADIUS, JUPITER_SPEED, JUPITER_RADIUS, "JUPITER");
     drawPlanet(saturnTexture, SATURN_ORBIT_RADIUS, SATURN_SPEED, SATURN_RADIUS, "SATURN", true, SATURN_RADIUS * 1.2f, SATURN_RADIUS * 2.0f);
