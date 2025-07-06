@@ -42,6 +42,14 @@ const float VENUS_RADIUS = 0.4;
 const float EARTH_RADIUS = 0.45;
 
 /**
+ * @var MOON_RADIUS
+ * @brief Radius of the Moon.
+ *
+ * The radius of the Moon, represented as a float.
+ */
+const float MOON_RADIUS = 0.1;
+
+/**
  * @var MARS_RADIUS
  * @brief Radius of Mars.
  *

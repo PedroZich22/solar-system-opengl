@@ -34,6 +34,14 @@ const float VENUS_ORBIT_RADIUS = 8.0;
 const float EARTH_ORBIT_RADIUS = 11.0;
 
 /**
+ * @var MOON_ORBIT_RADIUS
+ * @brief Orbital radius of the Moon.
+ *
+ * The distance of the Moon's orbit from Earth, represented as a float.
+ */
+const float MOON_ORBIT_RADIUS = 1; // Relative to Earth
+
+/**
  * @var MARS_ORBIT_RADIUS
  * @brief Orbital radius of Mars.
  *

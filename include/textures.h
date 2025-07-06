@@ -34,6 +34,12 @@
 #define EARTH_TEXTURE "../assets/textures/earth.jpg"
 
 /**
+ * @def MOON_TEXTURE
+ * @brief Path to the Moon texture.
+ */
+#define MOON_TEXTURE "../assets/textures/moon.jpg"
+
+/**
  * @def MARS_TEXTURE
  * @brief Path to the Mars texture.
  */

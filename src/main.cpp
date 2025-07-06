@@ -15,7 +15,7 @@
 #include "texture_loader.cpp"
 #include "input_handler.cpp"
 
-GLuint sunTexture, mercuryTexture, venusTexture, earthTexture, marsTexture, jupiterTexture, saturnTexture, saturnRingTexture, uranusTexture, neptuneTexture;
+GLuint sunTexture, mercuryTexture, moonTexture, venusTexture, earthTexture, marsTexture, jupiterTexture, saturnTexture, saturnRingTexture, uranusTexture, neptuneTexture;
 float rotationAngle = 0.0;
 
 void init()
@@ -27,6 +27,7 @@ void init()
   sunTexture = loadTexture(SUN_TEXTURE);
   mercuryTexture = loadTexture(MERCURY_TEXTURE);
   venusTexture = loadTexture(VENUS_TEXTURE);
+  moonTexture = loadTexture(MOON_TEXTURE);
   earthTexture = loadTexture(EARTH_TEXTURE);
   marsTexture = loadTexture(MARS_TEXTURE);
   jupiterTexture = loadTexture(JUPITER_TEXTURE);
@@ -109,10 +110,21 @@ void drawSaturnRing(float innerRadius, float outerRadius)
   gluDeleteQuadric(quad);
 };
 
+void drawMoon(float moonOrbitRadius, float moonOrbitSpeed, float moonRadius)
+{
+  glPushMatrix();
+  glRotatef(rotationAngle * moonOrbitSpeed, 0.0, 1.0, 0.0);
+  glTranslatef(moonOrbitRadius, 0.0, 0.0);
+  drawTexturedSphere(moonTexture, moonRadius);
+  glPopMatrix();
+}
+
 void drawPlanet(GLuint texture, float orbitRadius, float orbitSpeed, float planetRadius, const char *name, bool hasRing = false, float innerRingRadius = 0.0f, float outerRingRadius = 0.0f)
 {
   if (showOrbits)
+  {
     drawOrbit(orbitRadius);
+  }
 
   glPushMatrix();
   glRotatef(rotationAngle * orbitSpeed, 0.0, 1.0, 0.0);
@@ -122,6 +134,11 @@ void drawPlanet(GLuint texture, float orbitRadius, float orbitSpeed, float plane
   if (hasRing)
   {
     drawSaturnRing(innerRingRadius, outerRingRadius);
+  }
+
+  if (strcmp(name, "EARTH") == 0)
+  {
+    drawMoon(MOON_ORBIT_RADIUS, MOON_SPEED, MOON_RADIUS);
   }
 
   glPopMatrix();

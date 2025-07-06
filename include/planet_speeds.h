@@ -33,6 +33,8 @@ const float VENUS_SPEED = 3.0;
  */
 const float EARTH_SPEED = 2.0;
 
+const float MOON_SPEED = 2.0; // Speed of the Moon relative to Earth
+
 /**
  * @var MARS_SPEED
  * @brief Speed of Mars.
