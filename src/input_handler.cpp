@@ -8,6 +8,7 @@ int lastMouseY = 0;
 bool leftButtonPressed = false;
 
 bool showOrbits = false;
+bool showStarfield = false;
 float cameraDistance = 50.0;
 int selectedElement = -1;
 bool paused = false;
@@ -77,6 +78,10 @@ void keyPressed(unsigned char key, int x, int y)
   {
   case 27: // ESC key
     exit(0);
+    break;
+  case 'N':
+  case 'n':
+    showStarfield = !showStarfield;
     break;
   case 'O':
   case 'o':

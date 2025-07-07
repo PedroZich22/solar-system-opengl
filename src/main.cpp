@@ -14,7 +14,7 @@
 #include "../include/texture_loader.h"
 #include "../include/input_handler.h"
 
-GLuint sunTexture, mercuryTexture, moonTexture, venusTexture, earthTexture, marsTexture, jupiterTexture, saturnTexture, saturnRingTexture, uranusTexture, neptuneTexture;
+GLuint starsTextures[6], sunTexture, mercuryTexture, moonTexture, venusTexture, earthTexture, marsTexture, jupiterTexture, saturnTexture, saturnRingTexture, uranusTexture, neptuneTexture;
 float rotationAngle = 0.0;
 
 void init()
@@ -29,6 +29,13 @@ void init()
   GLfloat light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
   glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
   glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+
+  starsTextures[0] = loadTexture(STARS_BACK_TEXTURE);
+  starsTextures[1] = loadTexture(STARS_BACK_TEXTURE);
+  starsTextures[2] = loadTexture(STARS_TOP_TEXTURE);
+  starsTextures[3] = loadTexture(STARS_BACK_TEXTURE);
+  starsTextures[4] = loadTexture(STARS_BACK_TEXTURE);
+  starsTextures[5] = loadTexture(STARS_BACK_TEXTURE);
 
   sunTexture = loadTexture(SUN_TEXTURE);
   mercuryTexture = loadTexture(MERCURY_TEXTURE);
@@ -75,6 +82,69 @@ void drawTexturedSphere(GLuint texture, float radius)
   gluSphere(quad, radius, 36, 18);
   gluDeleteQuadric(quad);
 };
+
+void drawStarfield(float size)
+{
+  glPushAttrib(GL_ENABLE_BIT);
+  glDisable(GL_LIGHTING);
+  glDisable(GL_DEPTH_TEST);
+  glEnable(GL_TEXTURE_2D);
+
+  float hs = size / 2.0f;
+
+  glPushMatrix();
+
+  glBindTexture(GL_TEXTURE_2D, starsTextures[0]);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0, 0); glVertex3f( hs, -hs, -hs);
+  glTexCoord2f(1, 0); glVertex3f( hs, -hs,  hs);
+  glTexCoord2f(1, 1); glVertex3f( hs,  hs,  hs);
+  glTexCoord2f(0, 1); glVertex3f( hs,  hs, -hs);
+  glEnd();
+
+  glBindTexture(GL_TEXTURE_2D, starsTextures[1]);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0, 0); glVertex3f(-hs, -hs,  hs);
+  glTexCoord2f(1, 0); glVertex3f(-hs, -hs, -hs);
+  glTexCoord2f(1, 1); glVertex3f(-hs,  hs, -hs);
+  glTexCoord2f(0, 1); glVertex3f(-hs,  hs,  hs);
+  glEnd();
+
+  glBindTexture(GL_TEXTURE_2D, starsTextures[2]);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0, 0); glVertex3f(-hs,  hs, -hs);
+  glTexCoord2f(1, 0); glVertex3f( hs,  hs, -hs);
+  glTexCoord2f(1, 1); glVertex3f( hs,  hs,  hs);
+  glTexCoord2f(0, 1); glVertex3f(-hs,  hs,  hs);
+  glEnd();
+
+  glBindTexture(GL_TEXTURE_2D, starsTextures[3]);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0, 0); glVertex3f(-hs, -hs,  hs);
+  glTexCoord2f(1, 0); glVertex3f( hs, -hs,  hs);
+  glTexCoord2f(1, 1); glVertex3f( hs, -hs, -hs);
+  glTexCoord2f(0, 1); glVertex3f(-hs, -hs, -hs);
+  glEnd();
+
+  glBindTexture(GL_TEXTURE_2D, starsTextures[4]);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0, 0); glVertex3f(-hs, -hs, hs);
+  glTexCoord2f(1, 0); glVertex3f( hs, -hs, hs);
+  glTexCoord2f(1, 1); glVertex3f( hs,  hs, hs);
+  glTexCoord2f(0, 1); glVertex3f(-hs,  hs, hs);
+  glEnd();
+
+  glBindTexture(GL_TEXTURE_2D, starsTextures[5]);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0, 0); glVertex3f( hs, -hs, -hs);
+  glTexCoord2f(1, 0); glVertex3f(-hs, -hs, -hs);
+  glTexCoord2f(1, 1); glVertex3f(-hs,  hs, -hs);
+  glTexCoord2f(0, 1); glVertex3f( hs,  hs, -hs);
+  glEnd();
+
+  glPopMatrix();
+  glPopAttrib();
+}
 
 void drawOrbit(float radius)
 {
@@ -220,6 +290,8 @@ void display()
             cameraDistance * cos(cameraAngleY) * cos(cameraAngleX),
             0.0, 0.0, 0.0,
             0.0, 1.0, 0.0);
+
+  if (showStarfield) drawStarfield(150.0); // AJUSTAR TAMANHO
 
   if (selectedElement == 0 || selectedElement == -1)  drawSun(false);
 

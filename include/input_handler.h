@@ -21,6 +21,7 @@ extern int lastMouseY;
 extern bool leftButtonPressed;
 
 extern bool showOrbits;
+extern bool showStarfield;
 extern float cameraDistance;
 extern int selectedElement;
 extern bool paused;

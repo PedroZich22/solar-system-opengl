@@ -10,6 +10,42 @@
 #define TEXTURES_H
 
 /**
+ * @def STARS_RIGHT
+ * @brief Path to the right face of the Stars.
+ */
+#define STARS_RIGHT_TEXTURE "../assets/textures/stars_right.png"
+
+/**
+ * @def STARS_LEFT
+ * @brief Path to the left face of the Stars.
+ */
+#define STARS_LEFT_TEXTURE "../assets/textures/stars_left.png"
+
+/**
+ * @def STARS_TOP
+ * @brief Path to the top face of the Stars.
+ */
+#define STARS_TOP_TEXTURE "../assets/textures/stars_top.png"
+
+/**
+ * @def STARS_BOTTOM
+ * @brief Path to the bottom face of the Stars.
+ */
+#define STARS_BOTTOM_TEXTURE "../assets/textures/stars_bot.png"
+
+/**
+ * @def STARS_FRONT
+ * @brief Path to the front face of the Stars.
+ */
+#define STARS_FRONT_TEXTURE "../assets/textures/stars_front.png"
+
+/**
+ * @def STARS_BACK
+ * @brief Path to the back face of the Stars.
+ */
+#define STARS_BACK_TEXTURE "../assets/textures/stars_back.png"
+
+/**
  * @def SUN_TEXTURE
  * @brief Path to the Sun texture.
  */
