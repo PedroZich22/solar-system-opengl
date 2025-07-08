@@ -33,7 +33,7 @@ void init()
   starsTextures[0] = loadTexture(STARS_BACK_TEXTURE);
   starsTextures[1] = loadTexture(STARS_BACK_TEXTURE);
   starsTextures[2] = loadTexture(STARS_TOP_TEXTURE);
-  starsTextures[3] = loadTexture(STARS_BACK_TEXTURE);
+  starsTextures[3] = loadTexture(STARS_BOTTOM_TEXTURE);
   starsTextures[4] = loadTexture(STARS_BACK_TEXTURE);
   starsTextures[5] = loadTexture(STARS_BACK_TEXTURE);
 
@@ -83,65 +83,37 @@ void drawTexturedSphere(GLuint texture, float radius)
   gluDeleteQuadric(quad);
 };
 
-void drawStarfield(float size)
-{
+void drawStarfield(float size) {
   glPushAttrib(GL_ENABLE_BIT);
   glDisable(GL_LIGHTING);
   glDisable(GL_DEPTH_TEST);
   glEnable(GL_TEXTURE_2D);
 
   float hs = size / 2.0f;
+  
+  float vertices[6][4][3] = {
+    {{ hs, -hs, -hs}, { hs, -hs,  hs}, { hs,  hs,  hs}, { hs,  hs, -hs}},
+    {{-hs, -hs,  hs}, {-hs, -hs, -hs}, {-hs,  hs, -hs}, {-hs,  hs,  hs}},
+    {{-hs,  hs, -hs}, { hs,  hs, -hs}, { hs,  hs,  hs}, {-hs,  hs,  hs}},
+    {{-hs, -hs,  hs}, { hs, -hs,  hs}, { hs, -hs, -hs}, {-hs, -hs, -hs}},
+    {{-hs, -hs,  hs}, { hs, -hs,  hs}, { hs,  hs,  hs}, {-hs,  hs,  hs}},
+    {{ hs, -hs, -hs}, {-hs, -hs, -hs}, {-hs,  hs, -hs}, { hs,  hs, -hs}}
+  };
+
+  float texCoords[4][2] = {{0, 0}, {1, 0}, {1, 1}, {0, 1}};
 
   glPushMatrix();
-
-  glBindTexture(GL_TEXTURE_2D, starsTextures[0]);
-  glBegin(GL_QUADS);
-  glTexCoord2f(0, 0); glVertex3f( hs, -hs, -hs);
-  glTexCoord2f(1, 0); glVertex3f( hs, -hs,  hs);
-  glTexCoord2f(1, 1); glVertex3f( hs,  hs,  hs);
-  glTexCoord2f(0, 1); glVertex3f( hs,  hs, -hs);
-  glEnd();
-
-  glBindTexture(GL_TEXTURE_2D, starsTextures[1]);
-  glBegin(GL_QUADS);
-  glTexCoord2f(0, 0); glVertex3f(-hs, -hs,  hs);
-  glTexCoord2f(1, 0); glVertex3f(-hs, -hs, -hs);
-  glTexCoord2f(1, 1); glVertex3f(-hs,  hs, -hs);
-  glTexCoord2f(0, 1); glVertex3f(-hs,  hs,  hs);
-  glEnd();
-
-  glBindTexture(GL_TEXTURE_2D, starsTextures[2]);
-  glBegin(GL_QUADS);
-  glTexCoord2f(0, 0); glVertex3f(-hs,  hs, -hs);
-  glTexCoord2f(1, 0); glVertex3f( hs,  hs, -hs);
-  glTexCoord2f(1, 1); glVertex3f( hs,  hs,  hs);
-  glTexCoord2f(0, 1); glVertex3f(-hs,  hs,  hs);
-  glEnd();
-
-  glBindTexture(GL_TEXTURE_2D, starsTextures[3]);
-  glBegin(GL_QUADS);
-  glTexCoord2f(0, 0); glVertex3f(-hs, -hs,  hs);
-  glTexCoord2f(1, 0); glVertex3f( hs, -hs,  hs);
-  glTexCoord2f(1, 1); glVertex3f( hs, -hs, -hs);
-  glTexCoord2f(0, 1); glVertex3f(-hs, -hs, -hs);
-  glEnd();
-
-  glBindTexture(GL_TEXTURE_2D, starsTextures[4]);
-  glBegin(GL_QUADS);
-  glTexCoord2f(0, 0); glVertex3f(-hs, -hs, hs);
-  glTexCoord2f(1, 0); glVertex3f( hs, -hs, hs);
-  glTexCoord2f(1, 1); glVertex3f( hs,  hs, hs);
-  glTexCoord2f(0, 1); glVertex3f(-hs,  hs, hs);
-  glEnd();
-
-  glBindTexture(GL_TEXTURE_2D, starsTextures[5]);
-  glBegin(GL_QUADS);
-  glTexCoord2f(0, 0); glVertex3f( hs, -hs, -hs);
-  glTexCoord2f(1, 0); glVertex3f(-hs, -hs, -hs);
-  glTexCoord2f(1, 1); glVertex3f(-hs,  hs, -hs);
-  glTexCoord2f(0, 1); glVertex3f( hs,  hs, -hs);
-  glEnd();
-
+  
+  for (int i = 0; i < 6; i++) {
+    glBindTexture(GL_TEXTURE_2D, starsTextures[i]);
+    glBegin(GL_QUADS);
+    for (int j = 0; j < 4; j++) {
+      glTexCoord2fv(texCoords[j]);
+      glVertex3fv(vertices[i][j]);
+    }
+    glEnd();
+  }
+  
   glPopMatrix();
   glPopAttrib();
 }
