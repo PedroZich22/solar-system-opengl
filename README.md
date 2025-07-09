@@ -1,6 +1,11 @@
 # 🌌 Sistema Solar - OpenGL
 
-Este projeto apresenta uma visualização 3D do sistema solar usando OpenGL com C/C++. O objetivo foi criar uma representação interativa dos corpos celestes, incluindo o Sol, os planetas e os anéis de Saturno. O projeto demonstra as capacidades do OpenGL para simulações dinâmicas e visualmente ricas, permitindo que os usuários explorem órbitas planetárias.
+Este projeto é destinado a matéria de Computação Gráfica 5º Semestre do IFSP Campus São Paulo, Bacharelado em Sistemas de Informação. Cujo os integrantes são:
+- Pedro Barros Zich - SP3120236
+- Jonas Sanjinez Lopes - SP3121976
+- João Vitor Leal de Castro - SP3122972
+
+O projeto apresenta uma visualização 3D do sistema solar usando OpenGL com C/C++. O objetivo foi criar uma representação interativa dos corpos celestes, incluindo o Sol, os planetas e os anéis de Saturno. O projeto demonstra as capacidades do OpenGL para simulações dinâmicas e visualmente ricas, permitindo que os usuários explorem órbitas planetárias.
 
 ## Funcionalidades
 
@@ -28,6 +33,16 @@ Para compilar e executar o sistema solar, siga as seguintes etapas:
 cd build
 cmake ..
 cmake --build . && ../bin/main
+```
+
+### Compilar com G++
+
+
+Para compilar e executar o sistema solar, siga as seguintes etapas:
+Obs: Altere o caminho '/ProgramData/mingw64/mingw64/include' para onde está seu devido include do MinGW e '/ProgramData/mingw64/mingw64/lib'
+```bash
+cd src
+g++ main.cpp input_handler.cpp texture_loader.cpp -o sistema.exe  -Iinclude -IC:/ProgramData/mingw64/mingw64/include  -LC:/ProgramData/mingw64/mingw64/lib -lfreeglut -lopengl32 -lglu32
 ```
 
 ## Controles

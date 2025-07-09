@@ -2,3 +2,4 @@ build/*
 !.keep
 .DS_Store
 bin/*
+.tutorial
