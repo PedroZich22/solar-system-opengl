@@ -1,9 +1,9 @@
 /**
  * @file planet_speeds.h
- * @brief Defines speeds for planets.
+ * @brief Define as velocidades dos planetas.
  *
- * This file contains constants representing the speeds of various planets.
- * The speeds are used to control the rate at which planets move or orbit.
+ * Este arquivo contém constantes que representam as velocidades de vários planetas.
+ * As velocidades são usadas para controlar a taxa de movimento ou translação dos planetas.
  */
 
 #ifndef PLANET_SPEEDS_H
@@ -11,67 +11,73 @@
 
 /**
  * @var MERCURY_SPEED
- * @brief Speed of Mercury.
+ * @brief Velocidade de Mercúrio.
  *
- * The speed at which Mercury moves or orbits, represented as a float.
+ * A velocidade com que Mercúrio se move ou orbita, representada como um float.
  */
 const float MERCURY_SPEED = 4.0;
 
 /**
  * @var VENUS_SPEED
- * @brief Speed of Venus.
+ * @brief Velocidade de Vênus.
  *
- * The speed at which Venus moves or orbits, represented as a float.
+ * A velocidade com que Vênus se move ou orbita, representada como um float.
  */
 const float VENUS_SPEED = 3.0;
 
 /**
  * @var EARTH_SPEED
- * @brief Speed of Earth.
+ * @brief Velocidade da Terra.
  *
- * The speed at which Earth moves or orbits, represented as a float.
+ * A velocidade com que a Terra se move ou orbita, representada como um float.
  */
 const float EARTH_SPEED = 2.0;
 
-const float MOON_SPEED = (EARTH_SPEED * 0.3f); // Speed of the Moon relative to Earth
+/**
+ * @var MOON_SPEED
+ * @brief Velocidade da Lua.
+ *
+ * A velocidade com que a Lua se move em relação à Terra, representada como um float.
+ */
+const float MOON_SPEED = (EARTH_SPEED * 0.3f); // Velocidade da Lua relativa à Terra
 
 /**
  * @var MARS_SPEED
- * @brief Speed of Mars.
+ * @brief Velocidade de Marte.
  *
- * The speed at which Mars moves or orbits, represented as a float.
+ * A velocidade com que Marte se move ou orbita, representada como um float.
  */
 const float MARS_SPEED = 1.5;
 
 /**
  * @var JUPITER_SPEED
- * @brief Speed of Jupiter.
+ * @brief Velocidade de Júpiter.
  *
- * The speed at which Jupiter moves or orbits, represented as a float.
+ * A velocidade com que Júpiter se move ou orbita, representada como um float.
  */
 const float JUPITER_SPEED = 1.0;
 
 /**
  * @var SATURN_SPEED
- * @brief Speed of Saturn.
+ * @brief Velocidade de Saturno.
  *
- * The speed at which Saturn moves or orbits, represented as a float.
+ * A velocidade com que Saturno se move ou orbita, representada como um float.
  */
 const float SATURN_SPEED = 0.8;
 
 /**
  * @var URANUS_SPEED
- * @brief Speed of Uranus.
+ * @brief Velocidade de Urano.
  *
- * The speed at which Uranus moves or orbits, represented as a float.
+ * A velocidade com que Urano se move ou orbita, representada como um float.
  */
 const float URANUS_SPEED = 0.6;
 
 /**
  * @var NEPTUNE_SPEED
- * @brief Speed of Neptune.
+ * @brief Velocidade de Netuno.
  *
- * The speed at which Neptune moves or orbits, represented as a float.
+ * A velocidade com que Netuno se move ou orbita, representada como um float.
  */
 const float NEPTUNE_SPEED = 0.5;
 

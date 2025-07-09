@@ -1,9 +1,9 @@
 /**
  * @file texture_loader.h
- * @brief Provides texture loading functionality.
+ * @brief Fornece funcionalidade de carregamento de texturas.
  *
- * This file declares functions and includes necessary libraries for loading
- * textures using the STB image library and OpenGL.
+ * Este arquivo declara funções e inclui as bibliotecas necessárias para carregar
+ * texturas utilizando a biblioteca STB image e OpenGL.
  */
 
 #ifndef TEXTURE_LOADER_H
@@ -11,23 +11,22 @@
 
 /**
  * @def STB_IMAGE_IMPLEMENTATION
- * @brief Defines implementation of the STB image library.
+ * @brief Define a implementação da biblioteca STB image.
  *
- * This macro should be defined exactly once in the project to include
- * the implementation of the STB image functions.
+ * Essa macro deve ser definida exatamente uma vez no projeto para incluir
+ * a implementação das funções da biblioteca STB image.
  */
 
 #include <GL/freeglut.h>
-
 #include <iostream>
 
 /**
- * @brief Loads a texture from a file.
- * @param filename Path to the texture file.
- * @return The OpenGL texture ID.
+ * @brief Carrega uma textura a partir de um arquivo.
+ * @param filename Caminho para o arquivo de textura.
+ * @return O ID da textura no OpenGL.
  *
- * This function loads an image from the specified file and generates
- * an OpenGL texture object.
+ * Esta função carrega uma imagem do arquivo especificado e gera
+ * um objeto de textura do OpenGL.
  */
 GLuint loadTexture(const char *filename);
 

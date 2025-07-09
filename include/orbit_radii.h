@@ -1,9 +1,9 @@
 /**
  * @file orbit_radii.h
- * @brief Defines orbit radii for planets.
+ * @brief Define os raios orbitais dos planetas.
  *
- * This file contains constants representing the orbital radii of various planets.
- * These values are used to determine the distance of each planet's orbit from the Sun.
+ * Este arquivo contém constantes que representam os raios orbitais de vários planetas.
+ * Esses valores são usados para determinar a distância da órbita de cada planeta em relação ao Sol.
  */
 
 #ifndef ORBIT_RADII_H
@@ -11,73 +11,73 @@
 
 /**
  * @var MERCURY_ORBIT_RADIUS
- * @brief Orbital radius of Mercury.
+ * @brief Raio orbital de Mercúrio.
  *
- * The distance of Mercury's orbit from the Sun, represented as a float.
+ * A distância da órbita de Mercúrio em relação ao Sol, representada como um float.
  */
 const float MERCURY_ORBIT_RADIUS = 5.0;
 
 /**
  * @var VENUS_ORBIT_RADIUS
- * @brief Orbital radius of Venus.
+ * @brief Raio orbital de Vênus.
  *
- * The distance of Venus's orbit from the Sun, represented as a float.
+ * A distância da órbita de Vênus em relação ao Sol, representada como um float.
  */
 const float VENUS_ORBIT_RADIUS = 8.0;
 
 /**
  * @var EARTH_ORBIT_RADIUS
- * @brief Orbital radius of Earth.
+ * @brief Raio orbital da Terra.
  *
- * The distance of Earth's orbit from the Sun, represented as a float.
+ * A distância da órbita da Terra em relação ao Sol, representada como um float.
  */
 const float EARTH_ORBIT_RADIUS = 11.0;
 
 /**
  * @var MOON_ORBIT_RADIUS
- * @brief Orbital radius of the Moon.
+ * @brief Raio orbital da Lua.
  *
- * The distance of the Moon's orbit from Earth, represented as a float.
+ * A distância da órbita da Lua em relação à Terra, representada como um float.
  */
-const float MOON_ORBIT_RADIUS = 1; // Relative to Earth
+const float MOON_ORBIT_RADIUS = 1; // Relativo à Terra
 
 /**
  * @var MARS_ORBIT_RADIUS
- * @brief Orbital radius of Mars.
+ * @brief Raio orbital de Marte.
  *
- * The distance of Mars's orbit from the Sun, represented as a float.
+ * A distância da órbita de Marte em relação ao Sol, representada como um float.
  */
 const float MARS_ORBIT_RADIUS = 14.0;
 
 /**
  * @var JUPITER_ORBIT_RADIUS
- * @brief Orbital radius of Jupiter.
+ * @brief Raio orbital de Júpiter.
  *
- * The distance of Jupiter's orbit from the Sun, represented as a float.
+ * A distância da órbita de Júpiter em relação ao Sol, representada como um float.
  */
 const float JUPITER_ORBIT_RADIUS = 20.0;
 
 /**
  * @var SATURN_ORBIT_RADIUS
- * @brief Orbital radius of Saturn.
+ * @brief Raio orbital de Saturno.
  *
- * The distance of Saturn's orbit from the Sun, represented as a float.
+ * A distância da órbita de Saturno em relação ao Sol, representada como um float.
  */
 const float SATURN_ORBIT_RADIUS = 28.0;
 
 /**
  * @var URANUS_ORBIT_RADIUS
- * @brief Orbital radius of Uranus.
+ * @brief Raio orbital de Urano.
  *
- * The distance of Uranus's orbit from the Sun, represented as a float.
+ * A distância da órbita de Urano em relação ao Sol, representada como um float.
  */
 const float URANUS_ORBIT_RADIUS = 35.0;
 
 /**
  * @var NEPTUNE_ORBIT_RADIUS
- * @brief Orbital radius of Neptune.
+ * @brief Raio orbital de Netuno.
  *
- * The distance of Neptune's orbit from the Sun, represented as a float.
+ * A distância da órbita de Netuno em relação ao Sol, representada como um float.
  */
 const float NEPTUNE_ORBIT_RADIUS = 40.0;
 

@@ -1,9 +1,9 @@
 /**
  * @file planet_radii.h
- * @brief Defines radii for celestial bodies.
+ * @brief Define os raios dos corpos celestes.
  *
- * This file contains constants representing the radii of various planets and the Sun.
- * These values are used to determine the size of each celestial body in the application.
+ * Este arquivo contém constantes que representam os raios de vários planetas e do Sol.
+ * Esses valores são usados para determinar o tamanho de cada corpo celeste na aplicação.
  */
 
 #ifndef PLANET_RADII_H
@@ -11,81 +11,81 @@
 
 /**
  * @var SUN_RADIUS
- * @brief Radius of the Sun.
+ * @brief Raio do Sol.
  *
- * The radius of the Sun, represented as a float.
+ * O raio do Sol, representado como um float.
  */
 const float SUN_RADIUS = 2.0;
 
 /**
  * @var MERCURY_RADIUS
- * @brief Radius of Mercury.
+ * @brief Raio de Mercúrio.
  *
- * The radius of Mercury, represented as a float.
+ * O raio de Mercúrio, representado como um float.
  */
 const float MERCURY_RADIUS = 0.2;
 
 /**
  * @var VENUS_RADIUS
- * @brief Radius of Venus.
+ * @brief Raio de Vênus.
  *
- * The radius of Venus, represented as a float.
+ * O raio de Vênus, representado como um float.
  */
 const float VENUS_RADIUS = 0.4;
 
 /**
  * @var EARTH_RADIUS
- * @brief Radius of Earth.
+ * @brief Raio da Terra.
  *
- * The radius of Earth, represented as a float.
+ * O raio da Terra, representado como um float.
  */
 const float EARTH_RADIUS = 0.45;
 
 /**
  * @var MOON_RADIUS
- * @brief Radius of the Moon.
+ * @brief Raio da Lua.
  *
- * The radius of the Moon, represented as a float.
+ * O raio da Lua, representado como um float.
  */
 const float MOON_RADIUS = 0.1;
 
 /**
  * @var MARS_RADIUS
- * @brief Radius of Mars.
+ * @brief Raio de Marte.
  *
- * The radius of Mars, represented as a float.
+ * O raio de Marte, representado como um float.
  */
 const float MARS_RADIUS = 0.3;
 
 /**
  * @var JUPITER_RADIUS
- * @brief Radius of Jupiter.
+ * @brief Raio de Júpiter.
  *
- * The radius of Jupiter, represented as a float.
+ * O raio de Júpiter, representado como um float.
  */
 const float JUPITER_RADIUS = 1.0;
 
 /**
  * @var SATURN_RADIUS
- * @brief Radius of Saturn.
+ * @brief Raio de Saturno.
  *
- * The radius of Saturn, represented as a float.
+ * O raio de Saturno, representado como um float.
  */
 const float SATURN_RADIUS = 0.85;
 
 /**
  * @var URANUS_RADIUS
- * @brief Radius of Uranus.
+ * @brief Raio de Urano.
  *
- * The radius of Uranus, represented as a float.
+ * O raio de Urano, representado como um float.
  */
 const float URANUS_RADIUS = 0.5;
 
 /**
  * @var NEPTUNE_RADIUS
- * @brief Radius of Neptune.
+ * @brief Raio de Netuno.
  *
- * The radius of Neptune, represented as a float.
+ * O raio de Netuno, representado como um float.
  */
 const float NEPTUNE_RADIUS = 0.5;
 
